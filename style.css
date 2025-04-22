@@ -1,87 +1,397 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Gilroy';
-    text-transform: capitalize;
- }
-html,body{
-     height:100%;
-     width:100%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  text-transform: capitalize;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.main{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(112, 112, 243);
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  /* Prevent accidental zooming on mobile via double-tap */
+  touch-action: manipulation;
 }
-.panel{
-    width: 90%;
-    height: 100%;
-    border-radius: 10px;
-    background-color: aliceblue;
-    overflow: hidden;
-    text-align: center;
-    font-weight: 900;
-    font-size: 20px;
-    color: blue;
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(112, 112, 243);
+  padding: 0.5rem; /* Slightly reduce padding on smallest edges */
 }
-.ptop{
-    width: 100%;
-    height: 100px;
-    display: flex;
-    color: #fff;
-    padding: 0 25%;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(73, 73, 239);
+
+.panel {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%; /* Use full height within padding */
+  max-height: 850px;
+  border-radius: 10px;
+  background-color: aliceblue;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.elem{
-    width: 10%;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+
+.game-title {
+  text-align: center;
+  color: rgb(73, 73, 239);
+  padding: 0.6rem 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0; /* Prevent title from shrinking */
 }
-button{
-    font-size: 17px;
-    color: blue;
-    border-radius: 17px;
-    padding: 9px 10px;
-    margin-left: -260px;
-    font-weight: 900;
-    cursor: pointer;
+
+.ptop {
+  width: 100%;
+  min-height: 70px; /* Slightly reduce min-height */
+  display: flex;
+  color: #fff;
+  padding: 0.8rem 1rem; /* Adjusted padding */
+  align-items: center;
+  justify-content: space-evenly; /* Use space-evenly for better distribution */
+  background-color: rgb(73, 73, 239);
+  flex-wrap: wrap;
+  gap: 0.8rem 1rem; /* Row gap, Column gap */
+  flex-shrink: 0; /* Prevent top panel from shrinking */
 }
-.box{
-   padding: 10px 20px;
-   background-color: #fff;
-   border-radius: 5px;
-   color: rgb(17, 17, 110);
-   font-weight: 700;
-   font-size: 20px;
+
+.elem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; /* Default internal gap */
+  flex-basis: auto; /* Allow natural sizing initially */
+  justify-content: center;
+  text-align: center;
+  /* Try to prevent elements from shrinking too much */
+  flex-shrink: 0;
 }
-.pbtm{
-    width: 100%;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    height: calc(100% - 100px);
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+
+.elem.button-group {
+  display: flex;
+  gap: 0.8rem;
+  /* Removed fixed basis here, let media query handle it */
+  justify-content: center;
+  flex-wrap: nowrap; /* Keep buttons side-by-side */
 }
-.bubble{
-    width: 60px;
-    height: 60px;
-    background-color: rgb(95, 95, 236);
-    color: #fff;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+
+.elem h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap; /* <<< Keep label text on one line */
+  margin: 0; /* Remove default margin */
 }
-.bubble:hover{
-    background-color: blue;
-    cursor: pointer;
+
+/* General Button Styles */
+button {
+  font-size: 1rem;
+  border-radius: 17px;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+  color: blue;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap; /* Prevent button text wrapping */
+}
+button:hover {
+  background-color: rgb(225, 235, 255);
+}
+button:active {
+  transform: scale(0.96);
+  background-color: rgb(200, 215, 255);
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  background-color: #eee;
+  color: #888;
+}
+
+.box {
+  padding: 0.5rem 0.8rem; /* Adjusted padding */
+  background-color: #fff;
+  border-radius: 5px;
+  color: rgb(17, 17, 110);
+  font-weight: 700;
+  font-size: 1.1rem; /* Adjusted font size */
+  min-width: 35px; /* Adjusted min-width */
+  text-align: center;
+  line-height: 1.1; /* Ensure text fits vertically */
+}
+
+.pbtm {
+  width: 100%;
+  padding: 0.8rem; /* Adjusted padding */
+  justify-content: center;
+  align-content: flex-start;
+  flex-grow: 1; /* Takes remaining space */
+  display: flex;
+  gap: 0.6rem; /* Default bubble gap */
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: relative;
+  /* Add background just in case */
+  background-color: aliceblue;
+}
+
+/* Pause Overlay Styling */
+.pbtm.paused::after {
+  content: "Paused";
+  position: absolute;
+  inset: 0; /* Shortcut for top/left/right/bottom 0 */
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  z-index: 5;
+  border-radius: 0 0 10px 10px; /* Match panel bottom radius */
+}
+
+.pbtm .placeholder,
+.pbtm .game-over {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #555;
+  text-align: center;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(
+    240,
+    248,
+    255,
+    0.98
+  ); /* Use panel bg color, slightly opaque */
+  z-index: 1;
+  padding: 1rem; /* Add padding to inner content */
+}
+
+.pbtm .game-over {
+  gap: 1rem;
+  z-index: 10;
+}
+
+.game-over h1 {
+  color: rgb(73, 73, 239);
+  font-size: 2.5rem;
+}
+.game-over p {
+  font-size: 1.5rem;
+  color: #333;
+}
+.game-over button {
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: rgb(73, 73, 239);
+  border-radius: 10px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.game-over button:hover {
+  background-color: rgb(50, 50, 200);
+}
+.game-over button:active {
+  transform: scale(0.96);
+  background-color: rgb(40, 40, 180);
+}
+
+.bubble {
+  width: clamp(
+    40px,
+    10vw,
+    60px
+  ); /* Adjusted clamp for potentially smaller minimum */
+  height: clamp(40px, 10vw, 60px);
+  background-color: rgb(95, 95, 236);
+  color: #fff;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Responsive font size in bubble */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0; /* Prevent bubbles shrinking unduly */
+}
+.bubble:hover {
+  background-color: blue;
+}
+.bubble:active {
+  transform: scale(0.9);
+  background-color: rgb(50, 50, 200);
+}
+
+/* --- Media Queries --- */
+
+/* Medium Screens (Tablets) */
+@media (max-width: 768px) {
+  .game-title {
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+  }
+  .ptop {
+    padding: 0.7rem 1rem;
+    gap: 0.6rem 0.8rem; /* Reduce gaps */
+  }
+
+  .elem {
+    gap: 0.5rem; /* Reduce internal gap */
+    /* Allow elements to take space, but wrap */
+  }
+  .elem.button-group {
+    flex-basis: 100%; /* Buttons take full row */
+    order: -1; /* Move buttons to the top */
+    margin-bottom: 0.5rem; /* Add space below buttons when wrapped */
+  }
+
+  .elem h2 {
+    font-size: 0.9rem;
+  }
+  .box {
+    padding: 0.4rem 0.7rem;
+    font-size: 1rem;
+    min-width: 30px;
+  }
+  button {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .pbtm {
+    padding: 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .pbtm .placeholder,
+  .pbtm .game-over {
+    font-size: 1.2rem;
+  }
+  .game-over h1 {
+    font-size: 2rem;
+  }
+  .game-over p {
+    font-size: 1.2rem;
+  }
+  .game-over button {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+  .pbtm.paused::after {
+    font-size: 2rem;
+  }
+}
+
+/* Small Screens (Mobiles) */
+@media (max-width: 480px) {
+  .game-title {
+    font-size: 1.3rem;
+    padding: 0.4rem 0;
+  }
+  .ptop {
+    padding: 0.5rem 0.5rem; /* Further reduce padding */
+    gap: 0.5rem; /* Further reduce gaps */
+    min-height: auto; /* Let height be natural */
+    justify-content: space-around; /* Change justification if needed */
+  }
+
+  .elem {
+    padding: 5px 0;
+    gap: 0.4rem; /* Very small internal gap */
+    justify-content: center; /* Center within the basis */
+  }
+  .elem.button-group {
+    flex-basis: 100%;
+    order: -1;
+    margin-bottom: 0.6rem; /* Space below buttons */
+    gap: 0.5rem; /* Gap between buttons */
+  }
+
+  .elem h2 {
+    font-size: 0.8rem; /* Smaller label */
+  }
+  .box {
+    font-size: 0.9rem; /* Smaller box text */
+    padding: 0.3rem 0.5rem; /* Smaller box padding */
+    min-width: 30px; /* Ensure minimum width */
+  }
+  button {
+    font-size: 0.85rem; /* Smaller buttons */
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px; /* Slightly smaller radius */
+  }
+
+  .pbtm {
+    padding: 0.5rem;
+    gap: 0.4rem;
+  } /* Reduce padding/gap for bubbles */
+  .bubble {
+    width: clamp(35px, 11vw, 50px); /* Adjust clamp if needed */
+    height: clamp(35px, 11vw, 50px);
+  }
+  .game-over button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  .pbtm.paused::after {
+    font-size: 1.8rem;
+  }
+  .game-over h1 {
+    font-size: 1.8rem;
+  }
+  .game-over p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Very Small Screens (Optional Fine-tuning) */
+@media (max-width: 360px) {
+  .ptop {
+    gap: 0.4rem; /* Minimal gap */
+  }
+  .elem {
+    gap: 0.3rem;
+    padding: 5px 0;
+  }
+  .elem h2 {
+    font-size: 0.75rem;
+  }
+  .box {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+    min-width: 28px;
+  }
+  button {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .bubble {
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+  } /* Even smaller bubble font */
 }
