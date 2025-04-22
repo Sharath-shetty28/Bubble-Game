@@ -2,8 +2,12 @@
 
 A fun and simple web-based game where players test their speed and accuracy by clicking numbered bubbles that match a target value before the timer runs out. Built with plain HTML, CSS, and JavaScript.
 
+Live on: https://sharath-shetty28.github.io/Bubble-Game/
+
 <!-- Optional: Add a screenshot of the game here -->
 <!-- ![Bubble Game Screenshot](path/to/your/screenshot.png) -->
+![image](https://github.com/user-attachments/assets/eea29b20-dfd8-4a16-833b-6decad49f882)
+
 
 ## Features
 
@@ -14,9 +18,6 @@ A fun and simple web-based game where players test their speed and accuracy by c
 *   **Responsive Design:** Adapts layout and element sizes for various devices (desktop, tablet, mobile).
 *   **Adaptive Bubble Area:** Bubbles dynamically calculate and fill the available game space, adjusting on window resize.
 *   **Pause/Resume:** Ability to pause the game and timer, then resume play.
-*   **Game Over Screen:** Displays the final score upon timer completion.
-*   **Smooth Interactions:** Visual feedback on button and bubble clicks/taps.
-*   **Pure Vanilla JS:** No external libraries or frameworks required.
 
 ## Getting Started
 
