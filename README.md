@@ -1,4 +1,4 @@
-# Bubble Game
+# Bubble Game 🎮
 
 A fun and simple web-based game where players test their speed and accuracy by clicking numbered bubbles that match a target value before the timer runs out. Built with plain HTML, CSS, and JavaScript.
 
