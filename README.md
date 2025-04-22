@@ -2,10 +2,11 @@
 
 A fun and simple web-based game where players test their speed and accuracy by clicking numbered bubbles that match a target value before the timer runs out. Built with plain HTML, CSS, and JavaScript.
 
-Live on: https://sharath-shetty28.github.io/Bubble-Game/
+🌐 Live on: https://sharath-shetty28.github.io/Bubble-Game/
 
 <!-- Optional: Add a screenshot of the game here -->
 <!-- ![Bubble Game Screenshot](path/to/your/screenshot.png) -->
+📸 Image:
 ![image](https://github.com/user-attachments/assets/eea29b20-dfd8-4a16-833b-6decad49f882)
 
 
